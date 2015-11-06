@@ -80,7 +80,7 @@ Before you can start using the package we need to set some configurations.
 To do so you must first publish the config file, you can do this with the following `artisan` command. 
 
 ```bash
-php artisan vendor:publish --provider="Bogardo\Mailgun\MailgunServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Bogardo\Mailgun\MailgunServiceProvider"
 ```
 After the config file has been published you can find it at: `config/mailgun.php`
 
