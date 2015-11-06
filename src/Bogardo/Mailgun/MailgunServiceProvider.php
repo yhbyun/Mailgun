@@ -21,8 +21,8 @@ class MailgunServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/config.php' => config_path('mailgun.php'),
-        ]);
+            __DIR__.'/../../config/config.php' => $this->getConfigPath(),
+        ], 'config');
     }
 
     /**
@@ -44,6 +44,20 @@ class MailgunServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../../config/config.php', 'mailgun'
         );
+    }
+
+    private function isLumen()
+    {
+        return str_contains($this->app->version(), 'Lumen');
+    }
+
+    private function getConfigPath()
+    {
+        if ($this->isLumen()) {
+            return base_path('config/mailgun.php');
+        } else {
+            return config_path('mailgun.php');
+        }
     }
 
     /**
